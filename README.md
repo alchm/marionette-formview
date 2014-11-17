@@ -142,7 +142,8 @@ var MyFormView = Marionette.FormView.extend({
                     console.log(password); // The value of the `password` field
                     console.log(passwordConfirmation); // The value of this field is always the first argument
                     return passwordConfirmation === password;
-                }
+                },
+                message: "Passwords are not equals"
             }
         },
         success: function(fields, formView) {
