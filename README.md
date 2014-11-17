@@ -7,7 +7,9 @@ A Marionette.LayoutView that allows form data binding and custom validation by p
 
 ## Data binding
 
-You can bind data from your fields by providing an id for each one
+You can bind data from your fields by providing an `id` for each one.
+Your form object also need an `id` to process form binding, and a `submit` (id selector too) to bind a click event on it.
+The `success` callback is called at the end of the validations if all are passed, and has the list of the parsed `fields` with its value and jQuery element
 
 ### HTML :
 
@@ -56,8 +58,10 @@ var MyFormView = Marionette.FormView.extend({
 
 ## Data validation
 
-You can specify a validation function on your email (for example) field by declaring a `validate` function on its declaration
+You can specify a validation function on your email field (for example) by declaring a `validate` function
+
 You can also add a `message` attribute to pass to your error callback
+
 Using the previous HTML sample :
 ```javascript
 var MyFormView = Marionette.FormView.extend({
@@ -71,7 +75,7 @@ var MyFormView = Marionette.FormView.extend({
                 validate: function(email) {
                     console.log(email); // "a@b.c"
                     return /(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,4})/.test(email);
-                    // An email regex example, it returns false
+                    // An email regex example, it returns false with "a@b.c"
                     // You have to return true if you want your validation to succeed
                 },
                 message: 'Please enter a valid email'
@@ -104,6 +108,8 @@ var MyFormView = Marionette.FormView.extend({
     },
 });
 ```
+
+
 
 # License
 
